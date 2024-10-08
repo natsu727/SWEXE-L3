@@ -1,0 +1,13 @@
+<%= form_with model: @tweets do |t| %>
+    <%= t.label :message %>
+    <%= t.text_field :message %>
+    <%= t.submit %>
+<% end %>
+<style>
+    .message{
+        background-color:rgb(200,200,200);
+        width:350px;
+        padding:10px;
+        border-radius:10px;
+    }
+</style>

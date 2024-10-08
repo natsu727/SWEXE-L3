@@ -1,0 +1,63 @@
+<div class="timeline">
+<% @tweets.each do |tweet| %>
+    <div class="card">
+        <%= link_to("/tweets/#{tweet.id}") do %>
+            <div class="message">
+                <h3><%= tweet.message %></h3>
+                <div class="times">
+                    <%if ((@live_time-tweet.tdate) /60).floor< 60%>
+                        <h3><%= ((@live_time-tweet.tdate) /60).floor %>分前</h3>
+                    <%elsif ((@live_time-tweet.tdate) /60).floor< 14400 %>
+                        <h3><%= ((@live_time-tweet.tdate) /3600).floor %>時間前</h3>
+                    <%else%>
+                        <h3><%= ((@live_time-tweet.tdate) /14400).floor %>日前</h3>
+                    <%end%>
+                </div>
+                
+            </div>
+        <%end%>
+    </div>
+<% end %>
+</div>
+<div class="tweet">
+    <%= link_to "つぶやく" , controller:'tweets', action:'new' %>
+</div>
+<style>
+    .card{
+        display:flex;
+        padding:7px 10px 7px 10px;
+        background-color:white;
+    }
+    .message{
+        border:solid 1px gray;
+        width:350px;
+        padding:10px;
+        padding-left:15px;
+        border-radius:10px;
+        margin-top:20px;
+    }
+    .times{
+        text-align: right;
+        padding-right: 10px;
+        font-size: 12px;
+        color: gray;
+    }
+    .timeline{
+        display:grid;
+        justify-content:center;
+    }
+    .tweet{
+        text-align:center;
+        width:100px;
+        background-color:rgb(91,209,215);
+        filter:brightness(95%);
+        padding:15px;
+        font-weight:950;
+        border-radius:35px;
+    }
+    a{text-decoration: none;}
+    .tweet a {
+        color:white;
+    }
+    
+</style>
